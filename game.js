@@ -127,8 +127,6 @@ class Level {
       for (let y = leftBorder; y < rightBorder; y++) {
         if (this.grid[x][y]) {
           return this.grid[x][y];
-        } else {
-          return undefined;
         }
       }
     }
@@ -333,18 +331,18 @@ const schemas = [
     '       o ',
     '     !xxx',
     ' @       ',
-    'xxx!     ',
+    'xxx!!!!!!',
     '         '
   ],
   [
     '      v  ',
-    '    v    ',
+    '        ',
     '  v      ',
     '        o',
     '        x',
     '@   x    ',
     'x        ',
-    '         '
+    '!!!!!!!!!'
   ]
 ];
 const actorDict = {
