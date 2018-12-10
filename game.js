@@ -67,6 +67,7 @@ class Actor {
       return false;
     }  
 
+    // форматирование
   return this.left < movingObject.right &&
         movingObject.left < this.right &&
         this.top < movingObject.bottom &&
@@ -121,6 +122,7 @@ class Level {
 
     for (let y = topBorder; y < bottomBorder; y++) {
       for (let x = leftBorder; x < rightBorder; x++) {
+        // const
         let levelGrid = this.grid[y][x];
         if (levelGrid) {
           return levelGrid;
@@ -182,6 +184,8 @@ class LevelParser {
 
   createActors(strings = []) {
     const actors = [];
+    // тут получается 2 обхода массива (map, а потом forEach)
+    // было бы хорошо сделать за 1
     const array = strings.map(string => string.split(''));
 
     array.forEach((row, y) => {
