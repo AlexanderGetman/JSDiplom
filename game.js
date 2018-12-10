@@ -177,18 +177,12 @@ class LevelParser {
   
 
   createGrid(strings = []) {
-    // тут можно использовать сокращённую форму записи стрелочных функций
-    return strings.map(el => {
-      return el.split('').map(i => {
-        return this.obstacleFromSymbol(i);
-      });
-    });
+    return strings.map(el => el.split('').map(i => this.obstacleFromSymbol(i)));
   }
 
   createActors(strings = []) {
     const actors = [];
-    // если значение присваивается переменной 1 раз, то лучше использвать const
-    let array = strings.map(string => string.split(''));
+    const array = strings.map(string => string.split(''));
 
     array.forEach((row, y) => {
       row.forEach((cell, x) => {
@@ -205,9 +199,8 @@ class LevelParser {
   }
 
   parse(strings = []) {
-    // const
-    let grid = this.createGrid(strings);
-    let actors = this.createActors(strings);
+    const grid = this.createGrid(strings);
+    const actors = this.createActors(strings);
     return new Level(grid, actors);
   }  
 }
@@ -271,8 +264,7 @@ class Coin extends Actor {
     this.springSpeed = 8;
     this.springDist = 0.07;
     this.spring = Math.random() * Math.PI * 2;
-    // тут можно не создавать новый вектор
-    this.currentPos = new Vector(this.pos.x, this.pos.y);
+    this.currentPos = this.pos;
   }
 
   get type() {
