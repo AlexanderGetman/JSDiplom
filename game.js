@@ -67,10 +67,7 @@ class Actor {
       return false;
     }  
 
-  return this.left < movingObject.right &&
-        movingObject.left < this.right &&
-        this.top < movingObject.bottom &&
-        movingObject.top < this.bottom;    
+  return this.left < movingObject.right && movingObject.left < this.right && this.top < movingObject.bottom && movingObject.top < this.bottom;    
   }
 }
 
@@ -121,7 +118,7 @@ class Level {
 
     for (let y = topBorder; y < bottomBorder; y++) {
       for (let x = leftBorder; x < rightBorder; x++) {
-        let levelGrid = this.grid[y][x];
+        const levelGrid = this.grid[y][x];
         if (levelGrid) {
           return levelGrid;
         }
@@ -182,10 +179,9 @@ class LevelParser {
 
   createActors(strings = []) {
     const actors = [];
-    const array = strings.map(string => string.split(''));
-
-    array.forEach((row, y) => {
-      row.forEach((cell, x) => {
+    
+    strings.forEach((row, y) => {
+      row.split('').forEach((cell, x) => {
         const actorCreator = this.actorFromSymbol(cell);
         if (typeof actorCreator === 'function') {
           const actor = new actorCreator(new Vector(x, y));
@@ -197,6 +193,7 @@ class LevelParser {
     });
     return actors;
   }
+
 
   parse(strings = []) {
     const grid = this.createGrid(strings);
